@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "npm run lint && node-sass style_fragmented/stylesgalery/index.scss htmlproject/style.css --output-style compressed",
+    "lint": "stylelint 'style_fragmented/stylesgalery/**/*.scss' --config .stylelintrc --syntax scss",
+    "start": "npm run build -- -w --source-map true",
+    "precommit": "npm run lint"
   },
   "repository": {
     "type": "git",
