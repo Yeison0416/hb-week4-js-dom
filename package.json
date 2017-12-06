@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "npm run lint && node-sass style_fragmented/stylesgalery/index.scss htmlproject/style.css --output-style compressed",
-    "lint": "stylelint 'style_fragmented/stylesgalery/**/*.scss' --config .stylelintrc --syntax scss",
+    "build": "npm run lint && node-sass sass_gallery/stylesgalery/index.scss htmlgallery/style.css --output-style compressed",
+    "lint": "stylelint 'sass_gallery/stylesgalery/**/*.scss' --config .stylelintrc --syntax scss",
     "start": "npm run build -- -w --source-map true",
     "precommit": "npm run lint"
   },
@@ -24,6 +24,6 @@
     "node-sass": "^4.7.2",
     "stylelint": "^8.3.1",
     "stylelint-config-recommended-scss": "^2.0.0",
-    "stylelint-scss": "^2.1.0"
+    "stylelint-scss": "^2.2.0"
   }
 }
