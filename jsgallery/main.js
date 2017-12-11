@@ -1,4 +1,4 @@
 import { Gallery } from './gallery.js'
 import  data  from './gallerydata.js'
 
-new Gallery(document.querySelector('.gallery'))
+new Gallery(document.querySelector('.gallery-delimitation',data))
