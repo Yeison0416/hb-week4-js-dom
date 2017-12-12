@@ -22,6 +22,12 @@
     justify-content: center;
     align-items: center;  
 
+    &__container-images{
+        width: 100%;
+        height: 100%;
+       
+    }
+
     &__container-arrows{
         position: absolute;
         width: 100%;
@@ -68,11 +74,11 @@
     }
 
     &__images{
-        position: relative;
-        display: flex;
         width: 100%;
-        height: 450;
-        object-fit: content ;
+        height: 450px;
+        object-fit: content;
+        position: absolute;
+        top: 0;
     }
 }
 
