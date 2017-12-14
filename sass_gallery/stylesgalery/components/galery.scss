@@ -24,8 +24,7 @@
 
     &__container-images{
         width: 100%;
-        height: 100%;
-       
+        height: 100%; 
     }
 
     &__container-arrows{
@@ -49,6 +48,7 @@
             height: 50px;
             border-radius: 4px;
             left: 5px;
+            
     }
 
     &__container-dots{
@@ -64,6 +64,9 @@
 
     &__style-dots-images {
         list-style: none; 
+        opacity: 0;
+
+       
     }
     
     &__dots{
@@ -71,6 +74,10 @@
         height: 20px;
         border-radius: 40px;
         margin-right: 5px;
+
+        &--selected {
+            background-color: green;
+        }
     }
 
     &__images{
@@ -79,7 +86,13 @@
         object-fit: content;
         position: absolute;
         top: 0;
+
+        &--selected{
+            opacity: 1;
+        }
     }
+
+    
 }
 
 
