@@ -40,14 +40,16 @@
         height: 50px;
         border-radius: 4px;
         right: 5px;
+        cursor: pointer;
     }
 
     &__arrow-left{
-            position: absolute;
-            width: 50px;
-            height: 50px;
-            border-radius: 4px;
-            left: 5px;
+        position: absolute;
+        width: 50px;
+        height: 50px;
+        border-radius: 4px;
+        left: 5px;
+        cursor: pointer;
             
     }
 
@@ -62,11 +64,19 @@
         align-items: center;
     }
 
-    &__style-dots-images {
+    &__style-listbutton{
+        list-style: none; 
+    }
+
+    &__style-listimage {
         list-style: none; 
         opacity: 0;
 
-       
+        &--selected{
+            transition: opacity .5s;
+            opacity: 1;
+            
+        }
     }
     
     &__dots{
@@ -77,7 +87,14 @@
 
         &--selected {
             background-color: green;
+            transition: opacity .5s;
         }
+
+        &--disabled {
+			pointer-events: none;
+			background-color: gray;
+			opacity: 0.5;
+		}
     }
 
     &__images{
@@ -86,10 +103,6 @@
         object-fit: content;
         position: absolute;
         top: 0;
-
-        &--selected{
-            opacity: 1;
-        }
     }
 
     
