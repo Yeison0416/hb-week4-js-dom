@@ -7,7 +7,7 @@ export class Gallery {
         this.setframework()
         this.setlist_dot(data)
         this.setlist_image(data) 
-        this.updateArrowsState(data)
+        this.updateArrowsState()
         this.setEvents()
     }
 
@@ -96,48 +96,56 @@ export class Gallery {
     const nodelistToArray= Array.apply(null, this.elements.dots)
     if(tag_clicked=='BUTTON'){
       const index = nodelistToArray.indexOf(clickedElement)
-      this.index=index
-      this.ControlChange_Image(this.index)
+      const flag_Index="dot_oppressed"
+      this.ControlChange_Image(index,flag_Index)
      }
   }
 
   NextImage () {
-
-    this.index=this.index+1
-    const flag_increaseIndex="increased_Index"
-    this.ControlChange_Image(this.index,flag_increaseIndex)
+    if(this.index < this.elements.image.length - 1){
+      this.index=this.index+1
+      const flag_increaseIndex="arrowIncreased"
+      this.ControlChange_Image(this.index,flag_increaseIndex)
+    }
   }
 
   PreviousImage () {
-    this.index=this.index-1
-    const flag_decreaseIndex="decreased_Index"
-    this.ControlChange_Image(this.index,flag_decreaseIndex)
+    if(this.index > 0){
+      this.index=this.index-1
+      const flag_decreaseIndex="arrowDecreased"
+      this.ControlChange_Image(this.index,flag_decreaseIndex)
+    }
   }
 
   ControlChange_Image (index,flag) {
-
-    if(flag=="increased_Index"){
+    if(flag=="arrowIncreased"){
       this.elements.listimage[index].classList.add(Gallery.states_elements.imageSelected)
       this.elements.dots[index].classList.add(Gallery.states_elements.dotSelected)
       this.elements.listimage[index-1].classList.remove(Gallery.states_elements.imageSelected)
       this.elements.dots[index-1].classList.remove(Gallery.states_elements.dotSelected)
       this.updateArrowsState()
     }
-    else if(flag=="decreased_Index"){
+    else if(flag=="arrowDecreased"){
       this.elements.listimage[index].classList.add(Gallery.states_elements.imageSelected)
       this.elements.dots[index].classList.add(Gallery.states_elements.dotSelected)
       this.elements.listimage[index+1].classList.remove(Gallery.states_elements.imageSelected)
       this.elements.dots[index+1].classList.remove(Gallery.states_elements.dotSelected)
       this.updateArrowsState()
     }
+    else if(flag="dot_oppressed"){
+      this.elements.listimage[this.index].classList.remove(Gallery.states_elements.imageSelected)
+      this.elements.dots[this.index].classList.remove(Gallery.states_elements.dotSelected)
+      this.index=index
+      this.elements.listimage[this.index].classList.add(Gallery.states_elements.imageSelected)
+      this.elements.dots[this.index].classList.add(Gallery.states_elements.dotSelected)
+      this.updateArrowsState()
+    }
   }
 
-  updateArrowsState (data) {
+  updateArrowsState () {
    
     const isFirst = this.index === 0
-    const isLast = this.index ===4-1
-
-    
+    const isLast = this.index === this.elements.image.length - 1
 
     this.elements.leftBtn.classList.remove(Gallery.states_elements.arrowDisabled)
     this.elements.rightBtn.classList.remove(Gallery.states_elements.arrowDisabled)
@@ -154,17 +162,11 @@ export class Gallery {
     switch (key) {
       case 'ArrowLeft':
         this.PreviousImage()
-        console.log(this.index)
         break
       case 'ArrowRight':
         this.NextImage()
-        console.log(this.index)
         break
     }
-  }
-
-  
-    
-    
+  }  
 }
 

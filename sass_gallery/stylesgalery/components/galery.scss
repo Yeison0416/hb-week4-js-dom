@@ -1,27 +1,52 @@
-.front{
+$break-small: 639px;
+$break-medium1:640px;
+$break-medium2:1023px;
+$break-large:1024px;
+
+
+@mixin respond-to($media) {
+    @if $media == handhelds {
+      @media only screen and (max-width: $break-small) { @content; }
+    }
+     @else if $media == medium-screens {
+       @media only screen and (min-width: $break-medium1) and (max-width: $break-medium2) { @content; }
+    }
+    @else if $media == wide-screens {
+      @media only screen and (min-width: $break-large) { @content; }
+    }
+    //Como puedo hacer que para todas las condisiones impuestas no sean adaptativas si no que responsive o liquidas
+}
+
+.deep{
     max-width: 100%;
     max-height: 100%;
-    width: 100%;
     background-image: url("http://3.bp.blogspot.com/-XyL3ytYomcI/V0cnVmdqAJI/AAAAAAAAvs0/6aNJKAyd8WMx9eUHfTGZON3hWJ1YZuqYwCHM/s1600/beautiful-racing-cars-wallpaper-full-hd-pictures.jpg");
-    object-fit: cover ;
+    object-fit: cover;
+  //  @include respond-to(handhelds) { width: 100%; height: 100%;} //pregunta= la imagen de fondo no queda adaptativa
 }
 
 .gallery-delimitation{
     max-width: 800px;
     margin: 0 auto;
-    width: 100%;
-    margin-top: 3%;
+    margin-top: 9%;
+    @include respond-to(handhelds) {width: 70%; margin: 0 auto; margin-top: 20%;}
+    @include respond-to(medium-screens) { width: 70%; margin: 0 auto; margin-top: 20%; }
+    @include respond-to(wide-screens) { width: 100% }
 }
+
+
 
 .gallery{
     position: relative;
     display: flex;
     width: 100%;
     height: 450px;
-    background-color: gray;
     justify-content: center;
-    align-items: center;  
-
+    align-items: center; 
+    @include respond-to(handhelds) {width: 100%;}
+    @include respond-to(medium-screens) { width: 100%;}
+    @include respond-to(wide-screens) { width: 100% }
+    
     &__container-images{
         width: 100%;
         height: 100%; 
@@ -30,8 +55,7 @@
     &__container-arrows{
         position: absolute;
         width: 100%;
-        height: 70px;
-        //background-color: lightcoral;   
+        height: 70px;  
     }  
 
     &__arrow-light{
@@ -41,6 +65,7 @@
         border-radius: 4px;
         right: 5px;
         cursor: pointer;
+        @include respond-to(handhelds) {width: 35px; height:35px;}
     }
 
     &__arrow-left{
@@ -49,8 +74,8 @@
         height: 50px;
         border-radius: 4px;
         left: 5px;
-        cursor: pointer;
-            
+        cursor: pointer; 
+        @include respond-to(handhelds) {width: 35px; height:35px;}      
     }
 
     &__container-dots{
@@ -58,7 +83,6 @@
         bottom: 0px;
         width: 80%;
         height: 40px;
-        //background-color: green;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -74,8 +98,7 @@
 
         &--selected{
             transition: opacity .5s;
-            opacity: 1;
-            
+            opacity: 1;  
         }
     }
     
@@ -84,15 +107,16 @@
         height: 20px;
         border-radius: 40px;
         margin-right: 5px;
+        @include respond-to(handhelds) {width: 15px; height:15px;}
 
         &--selected {
-            background-color: green;
+            background-color: red;
             transition: opacity .5s;
         }
 
         &--disabled {
 			pointer-events: none;
-			background-color: gray;
+			background-color: orange ;
 			opacity: 0.5;
 		}
     }
